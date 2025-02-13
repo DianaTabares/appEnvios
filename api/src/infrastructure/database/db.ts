@@ -1,4 +1,4 @@
-import mysql from "mysql2/promise";
+/*import { Sequelize } from "sequelize-typescript";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -7,29 +7,45 @@ function validaVariablesEnv() {
   const requiredEnvVars = ["DB_HOST", "DB_USER", "DB_PASS", "DB_NAME"];
   requiredEnvVars.forEach((varNombre) => {
     if (!process.env[varNombre]) {
-      throw new Error(`La variable de entorno ${varName} no está definida`);
+      throw new Error(`La variable de entorno ${varNombre} no está definida`);
     }
   });
 }
 
-export async function startConnection() {
-  try {
-    validaVariablesEnv();
+validaVariablesEnv();
 
-    const pool = mysql.createPool({
-      host: process.env.DB_HOST,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASS,
-      database: process.env.DB_NAME,
-      waitForConnections: true,
-      connectionLimit: 10,
-    });
-    console.log("Conexión a la base de datos establecida correctamente");
-    return pool;
-  } catch (err) {
-    console.error("Error al conectar a la base de datos:", err.message);
-    console.error(err.stack); // Mostrar el stack completo para depuración
-    // No salir del proceso, lanzar el error para que sea manejado por el llamador
-    throw err;
-  }
+export const sequelize = new Sequelize({
+  database: process.env.DB_NAME,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  host: process.env.DB_HOST,
+  dialect: "mysql",
+  logging: false, // Evita logs innecesarios
+  models: [__dirname + "/models"], // Carga modelos automáticamente
+});
+
+try {
+  console.log("Configuración de Sequelize cargada correctamente.");
+} catch (error) {
+  console.error("Error en la configuración de Sequelize:", error);
+  process.exit(1); // Finaliza el proceso si la configuración falla
 }
+
+export default sequelize;3*/
+
+import mysql from "mysql2/promise";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
+
+export default pool;
