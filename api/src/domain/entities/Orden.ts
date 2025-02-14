@@ -1,12 +1,12 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../../infrastructure/database/db";
 import Usuarios from "./Usuarios";
-import Trasportista from "./Trasportista";
+import Ruta from "./Ruta";
 
 class Orden extends Model {
   public id!: number;
   public usuariosId!: number;
-  public TrasportistaId!: number;
+  public RutaId!: number;
   public estatus!: "En espera" | "En transito" | "Entregado";
   public peso!: number;
   public dimensiones!: string;
@@ -26,10 +26,10 @@ Orden.init(
       allowNull: false,
       references: { model: Usuarios, key: "id" },
     },
-    TrasportistaId: {
+    RutaId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
-      references: { model: Trasportista, key: "id" },
+      references: { model: Ruta, key: "id" },
     },
     estatus: {
       type: DataTypes.ENUM("En espera", "En transito", "Entregado"),

@@ -17,25 +17,26 @@ Usuarios.init(
       primaryKey: true,
     },
     nombre: {
-      type: new DataTypes.STRING(128),
+      type: DataTypes.STRING(128),
       allowNull: false,
     },
     email: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
+      type: DataTypes.STRING(128),
+      allowNull: true,
     },
     password: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
+      type: DataTypes.STRING(128),
+      allowNull: true,
     },
     rol: {
-      type: new DataTypes.ENUM("admin", "user"),
+      type: DataTypes.ENUM("admin", "user"),
       defaultValue: "user",
     },
   },
   {
     tableName: "usuarios",
     sequelize: sequelize,
+    timestamps: false,
   }
 );
 

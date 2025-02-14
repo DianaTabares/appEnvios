@@ -2,18 +2,31 @@ import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import dotenv from "dotenv";
+import syncDataBase from "./utils/syncDB";
 import { Next } from "mysql2/typings/mysql/lib/parsers/typeCast";
-import { createTableOrden } from "./infrastructure/database/createTables";
 
 dotenv.config();
 
 const app: Application = express();
 
+app.set("port", process.env.PORT || 5000);
+
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
-createTableOrden();
+// Sincroniza la base de datos
+const initializeDB = async () => {
+  try {
+    await syncDataBase();
+    console.log("Base de datos sincronizada correctamente.");
+  } catch (error) {
+    console.error("Error sincronizando la base de datos:", error);
+    process.exit(1);
+  }
+};
+
+initializeDB();
 
 app.get("/", (req, res) => {
   res.send("API de envíos funcionando 🚀");

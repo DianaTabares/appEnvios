@@ -11,7 +11,12 @@ export class UsuariosController {
           .json({ message: "Todos los campos son obligatorios" });
       }
       const crearUsuarios = new CrearUsuarios();
-      const usuario = await crearUsuarios.ejecutar(nombre, email, password);
+      const usuario = await crearUsuarios.ejecutar(
+        nombre,
+        email,
+        password,
+        rol
+      );
       res.status(201).json({ message: "Usuario creado", usuario });
     } catch (error) {
       if (error instanceof Error) {

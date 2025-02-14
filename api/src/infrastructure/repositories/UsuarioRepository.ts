@@ -1,4 +1,4 @@
-import Usuarios from "../../domain/models/Usuarios"; // Importamos el modelo de usuario
+import Usuarios from "../../domain/entities/Usuarios"; // Importamos el modelo de usuario
 // Clase para el repositorio de usuario
 export class UsuarioRepository {
   // Método para crear un usuario
