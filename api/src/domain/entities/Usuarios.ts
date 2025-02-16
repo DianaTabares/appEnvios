@@ -1,7 +1,8 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../../infrastructure/database/db";
+import Orden from "./Orden";
 
-class Usuarios extends Model {
+class Usuario extends Model {
   public id!: number;
   public nombre!: string;
   public email!: string;
@@ -9,7 +10,7 @@ class Usuarios extends Model {
   public rol!: "admin" | "user";
 }
 
-Usuarios.init(
+Usuario.init(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -40,4 +41,10 @@ Usuarios.init(
   }
 );
 
-export default Usuarios;
+// Relación: Un usuario tiene muchas órdenes
+Usuario.hasMany(Orden, {
+  foreignKey: "usuariosId",
+  as: "ordenes",
+});
+
+export default Usuario;

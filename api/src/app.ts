@@ -4,6 +4,9 @@ import helmet from "helmet";
 import dotenv from "dotenv";
 import syncDataBase from "./utils/syncDB";
 import { Next } from "mysql2/typings/mysql/lib/parsers/typeCast";
+import transportistaRoutes from "./infrastructure/routes/transportista.routes";
+import ordenRoutes from "./infrastructure/routes/orden.routes";
+import rutasRouthes from "./infrastructure/routes/rutas.routhes";
 
 dotenv.config();
 
@@ -27,6 +30,9 @@ const initializeDB = async () => {
 };
 
 initializeDB();
+app.use("/api", transportistaRoutes);
+app.use("/api", ordenRoutes);
+app.use("/api", rutasRouthes);
 
 app.get("/", (req, res) => {
   res.send("API de envíos funcionando 🚀");

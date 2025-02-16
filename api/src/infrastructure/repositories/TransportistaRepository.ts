@@ -1,23 +1,19 @@
 import Transportista from "../../domain/entities/Transportista"; // Importamos el modelo de transportista
-
-// Clase para el repositorio de transportista
-export class TransportistaRepository {
+import IrepositoryTransportista from "../../domain/Irepositories/IrepositoryTransportista"; // Importamos la interfaz del repositorio de transportista
+// Implementamos la interfaz del repositorio de transportista
+export class TransportistaRepository implements IrepositoryTransportista {
   // Método para crear un transportista
-  async crearTransportista(transportista: {
-    nombre: string;
-    rutaId: number;
-    tipoVehiculo: string;
-    disponibilidad: boolean;
-  }) {
-    return await Transportista.create(transportista);
+  async crear(transportista: Partial<Transportista>): Promise<Transportista> {
+    const nuevoTransportista = await Transportista.create(transportista);
+    return nuevoTransportista;
   }
-  //Método para validar la disponibilidad de un transportista
-  async obtenerDisponibles(): Promise<Transportista[]> {
-    return await Transportista.findAll({ where: { disponible: true } });
-  }
-  //Método para buscar un transportista por id
-  async buscarPorId(id: number): Promise<Transportista | null> {
-    return await Transportista.findByPk(id);
+  //Método para obtener un transportista por id
+  async obtenerPorId(id: number): Promise<Transportista> {
+    const transportista = await Transportista.findByPk(id);
+    if (!transportista) {
+      throw new Error("Transportista no encontrado");
+    }
+    return transportista;
   }
   //Método para actualizar la disponibilidad de un transportista
   async actualizarDisponibilidad(
@@ -30,7 +26,7 @@ export class TransportistaRepository {
     );
   }
   //Método para mostrar todos los transportistas
-  async mostrarTransportistas() {
+  async mostrarTodos(): Promise<Transportista[]> {
     return await Transportista.findAll();
   }
 }

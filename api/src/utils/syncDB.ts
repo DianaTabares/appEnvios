@@ -1,5 +1,8 @@
 import sequelize from "../infrastructure/database/db";
 import Usuarios from "../domain/entities/Usuarios";
+import Ruta from "../domain/entities/Rutas";
+import Orden from "../domain/entities/Orden";
+import Trasportista from "../domain/entities/Transportista";
 
 const syncDataBase = async () => {
   try {
