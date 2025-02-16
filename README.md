@@ -65,22 +65,20 @@ npm run dev
 
 ## Endpoints Principales 🚏
 
-### 🔑 Autenticación (`/auth`)
+### 🔑 Usuario 
 
 | Método | Ruta             | Descripción         |
 | ------ | ---------------- | ------------------- |
-| `POST` | `/auth/register` | Registro de usuario |
-| `POST` | `/auth/login`    | Inicio de sesión    |
+| `POST` | `/registrar` | Registro de usuario |
+| `POST` | `/login`     | Inicio de sesión    |
 
 ### 📦 Gestión de Envíos (`/envios`)
 
 | Método   | Ruta          | Descripción              |
 | -------- | ------------- | ------------------------ |
-| `GET`    | `/envios`     | Obtener todos los envíos |
-| `POST`   | `/envios`     | Crear un nuevo envío     |
-| `GET`    | `/envios/:id` | Obtener un envío por ID  |
-| `PUT`    | `/envios/:id` | Actualizar un envío      |
-| `DELETE` | `/envios/:id` | Eliminar un envío        |
+| `POST`   | `/ordenes`    | crear ordenes            |
+| `POST`   | `/rutas`      | Crear rutas              |
+| `GET`    | `/asignar-ruta| Asignar ruta   |
 
 ### 📦 Caché con Redis
 
@@ -102,9 +100,7 @@ npm test
 
 Para acceder a la documentación, inicia el servidor y visita:
 
-```
-http://localhost:5000/api-docs
-```
+
 
 ---
 
