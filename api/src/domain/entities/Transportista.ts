@@ -1,6 +1,5 @@
-import { DataTypes, Model } from "sequelize";
+import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../../infrastructure/database/db";
-import { Rutas } from "./Rutas";
 
 class Transportista extends Model {
   public id!: number;
@@ -17,11 +16,11 @@ Transportista.init(
       primaryKey: true,
     },
     nombre: {
-      type: new DataTypes.STRING(128),
+      type: DataTypes.STRING(128),
       allowNull: false,
     },
     tipoVehiculo: {
-      type: new DataTypes.STRING(128),
+      type: DataTypes.STRING(128),
       allowNull: false,
     },
     disponibilidad: {
@@ -35,9 +34,5 @@ Transportista.init(
     timestamps: false,
   }
 );
-// Relación: Un transportista tiene muchas rutas
-Transportista.hasMany(Rutas, {
-  foreignKey: "transportistaId",
-  as: "rutas",
-});
+
 export default Transportista;

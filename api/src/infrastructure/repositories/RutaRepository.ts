@@ -1,5 +1,5 @@
 import { IRepositoryRuta } from "../../domain/Irepositories/IrepositoryRuta"; //Importamos la interfaz IRepositoryRuta
-import { Ruta } from "../../domain/entities/Rutas"; //Importamos la entidad Ruta
+import { Ruta } from "../../domain/entities/Ruta"; //Importamos la entidad Ruta
 //Implementacion de la interfaz IRepositoryRuta
 export class RutaRepository implements IRepositoryRuta {
   //Método para crear una ruta

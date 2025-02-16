@@ -1,4 +1,4 @@
-import Ruta from "../entities/Rutas"; // Importamos el modelo de ruta
+import Ruta from "../entities/Ruta"; // Importamos el modelo de ruta
 /*Esta interfaz especifica los métodos que cualquier repositorio 
 de rutas debe implementar.  */
 export interface IRepositoryRuta {

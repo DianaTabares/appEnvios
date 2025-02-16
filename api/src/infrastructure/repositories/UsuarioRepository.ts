@@ -1,14 +1,11 @@
-import Usuarios from "../../domain/entities/Usuarios"; // Importamos el modelo de usuario
-// Clase para el repositorio de usuario
-export class UsuarioRepository {
+import Usuarios from "../../domain/entities/Usuario"; // Importamos el modelo de usuario
+import IRepositoryUsuario from "../../domain/Irepositories/IrepositoryUsuario"; // Importamos la interfaz del repositorio de usuario
+// Implementacion de la interfaz del repositorio de usuario
+export class UsuarioRepository implements IRepositoryUsuario {
   // Método para crear un usuario
-  async crearUsuario(usuario: {
-    nombre: String;
-    email: String;
-    password: String;
-    role: "admin" | "user";
-  }) {
-    return await Usuarios.create(usuario);
+  async crear(usuario: Partial<Usuarios>): Promise<Usuarios> {
+    const nuevoUsuario = await Usuarios.create(usuario);
+    return nuevoUsuario;
   }
   //Método para buscar un usuario por email
   async buscarPorEmail(email: string): Promise<Usuarios> {

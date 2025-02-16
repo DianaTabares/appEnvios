@@ -1,7 +1,7 @@
-import { DataTypes, Model } from "sequelize";
+import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../../infrastructure/database/db";
-import Usuarios from "./Usuarios";
-import Ruta from "./Rutas";
+import Usuario from "./Usuario";
+import Ruta from "./Ruta";
 
 class Orden extends Model {
   public id!: number;
@@ -24,9 +24,9 @@ Orden.init(
     usuariosId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
-      references: { model: Usuarios, key: "id" },
+      references: { model: Usuario, key: "id" },
     },
-    RutaId: {
+    rutaId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       references: { model: Ruta, key: "id" },
@@ -58,16 +58,5 @@ Orden.init(
     timestamps: false,
   }
 );
-// Relación: Una orden pertenece a un usuario
-Orden.belongsTo(Usuarios, {
-  foreignKey: "usuariosId",
-  as: "usuario",
-});
-
-// Relación: Una orden pertenece a una ruta
-Orden.belongsTo(Ruta, {
-  foreignKey: "rutaId",
-  as: "ruta",
-});
 
 export default Orden;

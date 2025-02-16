@@ -7,6 +7,7 @@ import { Next } from "mysql2/typings/mysql/lib/parsers/typeCast";
 import transportistaRoutes from "./infrastructure/routes/transportista.routes";
 import ordenRoutes from "./infrastructure/routes/orden.routes";
 import rutasRouthes from "./infrastructure/routes/rutas.routhes";
+import usuarioRouthes from "./infrastructure/routes/usuario.routes";
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ initializeDB();
 app.use("/api", transportistaRoutes);
 app.use("/api", ordenRoutes);
 app.use("/api", rutasRouthes);
+app.use("/api", usuarioRouthes);
 
 app.get("/", (req, res) => {
   res.send("API de envíos funcionando 🚀");

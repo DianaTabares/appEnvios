@@ -1,6 +1,5 @@
-import { DataTypes, Model } from "sequelize";
+import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../../infrastructure/database/db";
-import Orden from "./Orden";
 
 class Usuario extends Model {
   public id!: number;
@@ -36,15 +35,9 @@ Usuario.init(
   },
   {
     tableName: "usuarios",
-    sequelize: sequelize,
+    sequelize,
     timestamps: false,
   }
 );
-
-// Relación: Un usuario tiene muchas órdenes
-Usuario.hasMany(Orden, {
-  foreignKey: "usuariosId",
-  as: "ordenes",
-});
 
 export default Usuario;

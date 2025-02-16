@@ -1,24 +1,32 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-export function AuthMiddleware(
-  req: Request,
+export interface AuthRequest extends Request {
+  usuario?: any;
+}
+
+export function authMiddleware(
+  req: AuthRequest,
   res: Response,
   next: NextFunction
 ) {
   const token = req.headers.authorization?.split(" ")[1];
-  if (!token) return res.status(401).json({ message: "Acceso denegado" });
+  if (!token) {
+    return res
+      .status(401)
+      .json({ message: "Acceso denegado. No se proporcionó token." });
+  }
   try {
     if (!process.env.SECRET_KEY) {
-      return res.status(500).json({ error: "Secret key not defined" });
+      return res.status(500).json({ error: "Secret key no definida" });
     }
-    const decodificaco = jwt.verify(token, process.env.SECRET_KEY);
-    req.body.user = decodificaco;
+    const decodificado = jwt.verify(token, process.env.SECRET_KEY);
+    req.usuario = decodificado;
     next();
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).json({ error: error.message });
     }
-    return res.status(500).json({ error: "Unknown error" });
+    return res.status(500).json({ error: "Token inválido" });
   }
 }

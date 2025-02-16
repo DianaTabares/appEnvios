@@ -1,5 +1,11 @@
-import { Sequelize } from "sequelize-typescript";
+import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
+import {
+  Usuario,
+  Orden,
+  Ruta,
+  Transportista,
+} from "../../domain/entities/Relaciones";
 
 dotenv.config();
 
@@ -21,10 +27,14 @@ export const sequelize = new Sequelize({
   host: process.env.DB_HOST,
   dialect: "mysql",
   logging: false, // Evita logs innecesarios
-  models: [__dirname + "/models"], // Carga modelos automáticamente
 });
 
 try {
+  Usuario.init({}, { sequelize });
+  Orden.init({}, { sequelize });
+  Ruta.init({}, { sequelize });
+  Transportista.init({}, { sequelize }); // Carga modelos automáticamente
+
   console.log("Configuración de Sequelize cargada correctamente.");
 } catch (error) {
   console.error("Error en la configuración de Sequelize:", error);
