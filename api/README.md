@@ -42,7 +42,7 @@ Crea un archivo `.env` en la raíz del proyecto y agrega:
 PORT=5000
 DB_HOST=localhost
 DB_USER=root
-DB_PASS=123456
+DB_PASS=admin
 DB_NAME=envios_db
 JWT_SECRET=supersecreto
 REDIS_HOST=127.0.0.1
@@ -132,6 +132,6 @@ Si deseas contribuir, por favor crea un **fork** del repositorio, haz tus cambio
 
 ## Autor ✍️
 
-**Tu Nombre**\
-📧 Contacto: [tuemail@example.com](mailto:tuemail@example.com)\
-🔗 GitHub: [github.com/tu-usuario](https://github.com/tu-usuario)
+**Diana Marcela Tabares Marin**\
+📧 Contacto: (dianis_933@hotmail.com)
+🔗 GitHub: [https://github.com/DianaTabares](https://github.com/DianaTabares/appEnvios)
